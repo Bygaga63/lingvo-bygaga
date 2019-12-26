@@ -14,12 +14,11 @@ yarn start
 ```
 
 ## Tasks
--[x] use feature first organization
--[x] use Redux-duck
--[x] use Redux-Toolkit
--[x] use NextJs
--[x] use Typescript
--[ ] use Semantic-UI or other UI lib 
--[ ] use firebase, firestore(db, auth)
+- [x] use feature first organization
+- [x] use Redux-duck
+- [x] use Redux-Toolkit
+- [x] use NextJs
+- [x] use Material UI
+- [ ] use firebase, firestore(db, auth)
 
 
