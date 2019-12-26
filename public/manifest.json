@@ -1,7 +1,8 @@
 {
-  "name": "next-offline",
-  "short_name": "next-offline",
-  "description": "Nextjs using service worker via next-offline",
+  "name": "lingvo-bygaga",
+  "short_name": "BLingvo",
+  "description": "lingvo app",
+  "start_url": "/",
   "icons": [
     {
       "src": "/static/pwa.png",
@@ -11,6 +12,5 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "start_url": "/",
   "display": "standalone"
 }

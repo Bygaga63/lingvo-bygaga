@@ -1,10 +1,31 @@
 const withOffline = require('next-offline');
 
 const nextConfig = {
-    // generateInDevMode: true,
+    target: 'serverless',
     workboxOpts: {
+
         swDest: 'static/service-worker.js',
-        generateInDevMode: true,
+        runtimeCaching: [
+            {
+                urlPattern: /^https?.*/,
+                handler: "NetworkFirst",
+                options: {
+                    cacheName: "https-calls",
+                    networkTimeoutSeconds: 15,
+                    expiration: {
+                        maxEntries: 150,
+                        maxAgeSeconds: 30 * 24 * 60 * 60 // 1 month
+                    },
+                    cacheableResponse: {
+                        statuses: [0, 200]
+                    }
+                }
+            }
+        ],
+        modifyURLPrefix: {
+            'static/': '_next/static/',
+            'public/': '/',
+        },
     },
     experimental: {
         async rewrites() {
