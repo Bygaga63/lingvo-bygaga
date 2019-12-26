@@ -17,7 +17,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": "./src"
   },
   "exclude": [
     "node_modules"

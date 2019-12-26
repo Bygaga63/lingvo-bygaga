@@ -58,11 +58,11 @@ export interface Word {
     meanings: PartialMeaning[]
 }
 
-const URL = 'https://dictionary.skyeng.ru/api/public/v1/meanings';
+const URL = 'https://dictionary.skyeng.ru/api/public/v1';
 
-export async function getMeanings(ids: string[], updateAt?: Date, width?: string, quality?: number) {
+async function getMeanings(ids: string[], updateAt?: Date, width?: string, quality?: number) {
     const idsToString = ids.join(',');
-    const {data} = await axios.get<WordMeaning[]>(URL, {
+    const {data} = await axios.get<WordMeaning[]>(URL + '/meanings', {
         params: {
             ids: idsToString
         }
@@ -75,13 +75,20 @@ export async function getMeaning(id: string) {
     return meanings[0];
 }
 
-export async function searchWordsByLetters(search: string, pageSize?: number, page?: number) {
-    const {data} = await axios.get<Word[]>(URL, {
-        params: {
-            search
-        }
-    });
+/**
+ *
+ * @param search
+ * @param pageSize number of words like this
+ * @param page
+ */
+export async function searchWordsByLetters(search: string, pageSize: number = 1, page?: number) {
+    const params = {search, pageSize};
+    const {data} = await axios.get<Word[]>(URL + '/words/search', {params});
+
     return data
 }
 
 
+export default {
+    getMeanings, getMeaning, searchWordsByLetters
+}

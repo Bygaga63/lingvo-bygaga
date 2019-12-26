@@ -1,20 +1,12 @@
 import {NextPage} from 'next';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../app/rootReducer";
-import {addWord, removeWord, Word} from '../features/wordsList/wordsSlice';
+import Link from "next/link";
 
 const Home: NextPage<{ userAgent: string }> = ({userAgent}) => {
-    const words = useSelector((state: RootState) => state.words.data);
-
-    const dispatch = useDispatch();
-    const add = () => dispatch(addWord({id: '3', value: 'Dog', translate: 'собака'}));
-    const remove = () => dispatch(removeWord('3'));
-
-    return (<div>
-        {Object.values(words).map((word: Word) => <div key={word.id}>{word.value}</div>)}
-        <button onClick={add}>Добавить</button>
-        <button onClick={remove}>Удалить</button>
-    </div>)
+    return (<>
+        <Link href={"/search"}>
+            <a>Search</a>
+        </Link>
+    </>)
 };
 
 

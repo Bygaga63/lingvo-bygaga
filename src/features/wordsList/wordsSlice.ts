@@ -1,44 +1,64 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Word} from "../../api/skyengAPI";
+import {AppThunk} from "../../app/store";
+import {skyengAPI} from "../../api";
 
-export interface Word {
-    id: string;
-    value: string;
-    translate: string;
-};
 
 
 interface WordsState {
-    isLoading: boolean
-    error: string | null
-    data: Record<string, Word>
+    isLoading: boolean;
+    error: string | null;
+    data: Word[];
 }
 
 const wordsInitialState: WordsState = {
-    data: {
-        '1': {id: '1', value: 'Man', translate: 'Мужчина'},
-        '2': {id: '2', value: 'Girl', translate: 'Девушка'}
-    },
+    data: [],
     isLoading: false,
     error: null
 };
 
+function startLoading(state: WordsState) {
+    state.isLoading = true
+}
+
+function loadingFailed(state: WordsState, action: PayloadAction<string>) {
+    state.isLoading = false;
+    state.error = action.payload
+}
+
+function loadingSuccess(state: WordsState) {
+    state.isLoading = false;
+    state.error = null;
+}
 
 const words = createSlice({
     name: 'words',
     initialState: wordsInitialState,
     reducers: {
-        addWord(state, {payload}: PayloadAction<Word>) {
-            const {id} = payload;
-            state.data[id] = (payload);
+        loadWordsStart: startLoading,
+        loadWordsFailure: loadingFailed,
+        loadWordsSuccess: (state, {payload}: PayloadAction<Word[]>) => {
+            loadingSuccess(state);
+            state.data = payload;
         },
-        removeWord(state, {payload}: PayloadAction<string>) {
-            delete state.data[payload]
-        }
+
     },
 });
 
 export const {
-    addWord, removeWord
+    loadWordsFailure, loadWordsStart, loadWordsSuccess
 } = words.actions;
 
 export default words.reducer;
+
+export const fetchWords = (
+    letters: string,
+): AppThunk => async dispatch => {
+    try {
+        dispatch(loadWordsStart());
+        const words = await skyengAPI.searchWordsByLetters(letters);
+        dispatch(loadWordsSuccess(words));
+    } catch (err) {
+        dispatch(loadWordsFailure(err.toString()))
+    }
+};
