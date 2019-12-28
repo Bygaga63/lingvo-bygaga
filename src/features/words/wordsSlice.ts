@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Word} from "../../api/skyengAPI";
-import {AppThunk} from "../../app/store";
-import {skyengAPI} from "../../api";
+import {Word} from "api/skyengAPI";
+import {AppThunk} from "app/store";
+import {skyengAPI} from "api";
 
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import debounce from 'lodash.debounce';
 import {fade, InputBase, makeStyles} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
-import {ChangeHandler} from "../../common/types";
+import {ChangeHandler} from "common/types";
 
 const useStyles = makeStyles(theme => ({
     search: {
@@ -44,12 +44,13 @@ const useStyles = makeStyles(theme => ({
 
 type Props = {
     onChange: (text: string) => void;
-    placeholder?: string
+    placeholder?: string;
+    wrapperClassName?: string
 }
 
 
 
-const SearchBar = ({onChange, placeholder}: Props) => {
+const SearchBar = ({wrapperClassName = '', onChange, placeholder}: Props) => {
     const classes = useStyles();
     const search = debounce(text => {
         onChange(text);
@@ -60,7 +61,7 @@ const SearchBar = ({onChange, placeholder}: Props) => {
     };
 
     return (
-        <div>
+        <div className={wrapperClassName}>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -73,6 +74,7 @@ const SearchBar = ({onChange, placeholder}: Props) => {
                     }}
                     inputProps={{ 'aria-label': 'search' }}
                     onChange={onChangeHandler}
+                    fullWidth
                 />
             </div>
         </div>

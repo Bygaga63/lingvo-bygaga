@@ -5,7 +5,7 @@ import store from "app/store";
 import {ThemeProvider} from "@material-ui/styles";
 import AppTheme from "app/theme";
 import {CssBaseline} from "@material-ui/core";
-import Layout from "components/layout/Layout";
+import {Layout} from "components";
 
 export default class extends App {
     componentDidMount() {
