@@ -2,11 +2,12 @@ import App from 'next/app'
 import React from 'react'
 import {Provider} from 'react-redux'
 import makeStore from "app/store";
-import {ThemeProvider} from "@material-ui/styles";
-import AppTheme from "app/theme";
 import {CssBaseline} from "@material-ui/core";
 import {Layout} from "components";
 import withRedux from "next-redux-wrapper";
+import AppThemeProvider from "../app/AppThemeProvider";
+import 'app-styles.css';
+
 
 class MyApp extends App {
     componentDidMount() {
@@ -20,7 +21,6 @@ class MyApp extends App {
     static async getInitialProps({Component, ctx}: any) {
 
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-        // console.log(pageProps);
         return {pageProps};
     }
 
@@ -30,12 +30,12 @@ class MyApp extends App {
 
         return (<>
             <Provider store={store}>
-                <ThemeProvider theme={AppTheme}>
+                <AppThemeProvider>
                     <CssBaseline/>
                     <Layout>
                         <Component {...pageProps} />
                     </Layout>
-                </ThemeProvider>
+                </AppThemeProvider>
             </Provider>
         </>)
     }

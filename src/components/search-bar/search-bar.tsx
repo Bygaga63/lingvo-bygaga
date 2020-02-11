@@ -1,7 +1,7 @@
 import React from 'react';
 import debounce from 'lodash.debounce';
 import {fade, InputBase, makeStyles} from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 import {ChangeHandler} from "common/types";
 
 const useStyles = makeStyles(theme => ({
@@ -64,7 +64,7 @@ const SearchBar = ({wrapperClassName = '', onChange, placeholder}: Props) => {
         <div className={wrapperClassName}>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
-                    <SearchIcon />
+                    {/*<SearchIcon />*/}
                 </div>
                 <InputBase
                     placeholder={placeholder}

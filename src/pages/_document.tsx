@@ -1,7 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
-import AppTheme from "app/theme";
 
 
 export default class MyDocument extends Document {
@@ -14,10 +13,11 @@ export default class MyDocument extends Document {
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"/>
                 {/* PWA primary color */}
-                <meta name="theme-color" content={AppTheme.palette.primary.main} />
+                {/*<meta name="theme-color" content={AppTheme.palette.primary.main} />*/}
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
                 <link rel="shortcut icon" href="/static/favicon.ico" />
-                <link rel="manifest" href="/manifest.json" />
+                <link rel="manifest" href="/static/manifest.json" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png"/>
             </Head>
             <body>
             <Main />

@@ -15,6 +15,7 @@ export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
 // export default store
 
 export default function makeStore(preloadedState: any) {
+
     return configureStore({
         reducer: rootReducer,
         devTools: process.env.NODE_ENV !== 'production',

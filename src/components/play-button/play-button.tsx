@@ -1,7 +1,7 @@
 import React from 'react';
 import {IconButton, makeStyles, fade} from "@material-ui/core";
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseCircleFilled from '@material-ui/icons/PauseCircleFilled';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import PauseCircleFilled from '@material-ui/icons/PauseCircleFilled';
 import {useAudio} from "hooks/useAudio";
 
 type Props = {
@@ -32,8 +32,8 @@ const PlayButton = ({soundUrl}: Props) => {
     return (
         <>
             {soundUrl && <IconButton className={classes.playContainer} onClick={toggleAudio} aria-label="play/pause">
-                {playing ? <PauseCircleFilled className={classes.playIcon}/> :
-                    <PlayArrowIcon className={classes.playIcon}/>}
+                {/*{playing ? <PauseCircleFilled className={classes.playIcon}/> :*/}
+                {/*    <PlayArrowIcon className={classes.playIcon}/>}*/}
             </IconButton>
             }
         </>
