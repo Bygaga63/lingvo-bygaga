@@ -9,12 +9,12 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const WordMeaning: NextPage<{}> = ({req}: any) => {
+const WordMeaning: NextPage<{}> = (props: any) => {
     const dispatch = useDispatch();
     const onChange = (text: string) => {
         dispatch(fetchWords(text));
     };
-    console.log(req);
+    console.log(props);
     const {isLoading, data, error} = useSelector((state: RootState) => state.words);
     return (
         <>
@@ -27,10 +27,10 @@ const WordMeaning: NextPage<{}> = ({req}: any) => {
 
 WordMeaning.getInitialProps = async (props: any) => {
     console.log(props.query.id);
-    console.log(props);
+    // console.log(props);
     // console.log(store);
 
-    return {};
+    return {test: 'test', query: props.query.id};
 };
 
 export default WordMeaning;

@@ -1,13 +1,14 @@
 import App from 'next/app'
 import React from 'react'
 import {Provider} from 'react-redux'
-import store from "app/store";
+import makeStore from "app/store";
 import {ThemeProvider} from "@material-ui/styles";
 import AppTheme from "app/theme";
 import {CssBaseline} from "@material-ui/core";
 import {Layout} from "components";
+import withRedux from "next-redux-wrapper";
 
-export default class extends App {
+class MyApp extends App {
     componentDidMount() {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side');
@@ -16,26 +17,16 @@ export default class extends App {
         }
     }
 
-    static async getInitialProps({Component, router, ctx}: any) {
-        const server = !!ctx.req;
-        const state = store.getState();
-        const out = {state, server} as any;
+    static async getInitialProps({Component, ctx}: any) {
 
-        if (Component.getInitialProps) {
-            return {
-                ...out,
-                pageProps: {
-                    ...await Component.getInitialProps(ctx)
-                }
-            }
-        }
-
-        return out
+        const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+        // console.log(pageProps);
+        return {pageProps};
     }
 
     render() {
         const {props} = this as any;
-        const {Component, pageProps} = props;
+        const {Component, pageProps, store} = props;
 
         return (<>
             <Provider store={store}>
@@ -49,3 +40,5 @@ export default class extends App {
         </>)
     }
 }
+
+export default withRedux(makeStore)(MyApp);
