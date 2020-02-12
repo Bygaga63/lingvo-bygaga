@@ -7,7 +7,6 @@ type Props = {
 
 const  AppThemeProvider: FC<Props> = (props) => {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    console.log({prefersDarkMode});
     const theme = React.useMemo(
         () =>
             createMuiTheme({

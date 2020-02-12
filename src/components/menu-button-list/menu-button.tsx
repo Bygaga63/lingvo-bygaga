@@ -28,7 +28,7 @@ const MenuButton = ({label, href, Icon}: Props) => {
             <Link href={href}>
                 <a className={classes.link}>
                         <Icon className={classes.icon}/>
-                        <Typography align={"center"} component={'p'} variant={"caption"}>
+                        <Typography component={'p'} variant={"caption"}>
                             {label}
                         </Typography>
                 </a>

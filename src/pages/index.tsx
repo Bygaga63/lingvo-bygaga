@@ -1,26 +1,29 @@
+import React from 'react';
 import {NextPage} from 'next';
-import Link from "next/link";
-import {Card} from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
-import MenuButtonList from "components/menu-button-list/menu-button-list";
+import {makeStyles} from '@material-ui/core/styles';
+import { WordCard, MenuButtonList } from 'components';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        paddingTop: '2vh',
+        display: 'flex',
+        padding: '2vh 0 1vh 0',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100vh'
     },
     card: {
-        height: '85vh',
+        height: '88vh',
     },
 }));
 
 const Home: NextPage<{ userAgent: string }> = ({userAgent}) => {
     const classes = useStyles();
-    return (<div className={classes.root}>
-        <Card className={classes.card}>
-
-        </Card>
-        <MenuButtonList/>
-    </div>)
+    return (
+        <div className={classes.root}>
+            <WordCard/>
+            <MenuButtonList/>
+        </div>
+    )
 };
 
 
