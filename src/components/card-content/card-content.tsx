@@ -12,7 +12,10 @@ const useStyles = makeStyles(theme => ({
     root: {
         overflowY: 'scroll',
         height: '100%',
-
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+        position: 'relative',
     },
     header: {
         display: 'flex',
@@ -22,9 +25,9 @@ const useStyles = makeStyles(theme => ({
 
     buttons: {
         position: 'absolute',
-        top: '35%',
-        left: '40%'
-        // bottom: '-20vh',
+        top: '35vh',
+        width: '100%',
+        textAlign: 'center',
     }
 
 }));
