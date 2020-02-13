@@ -1,5 +1,5 @@
 export enum Routes {
-    learn = '/learn',
+    learn = '/',
     category = '/category',
     statistic = '/statistic',
     menu = '/menu',

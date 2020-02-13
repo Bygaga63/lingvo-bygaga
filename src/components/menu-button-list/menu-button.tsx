@@ -12,12 +12,15 @@ type Props = {
 
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        textAlign: 'center',
+
+    },
     link: {
         color: 'inherit',
     },
     icon: {
-        display: 'block',
-        margin: 'auto',
+        display: 'inline-block',
     }
 
 }));
@@ -25,14 +28,17 @@ const useStyles = makeStyles(theme => ({
 const MenuButton = ({label, href, Icon}: Props) => {
     const classes = useStyles();
     return (
-            <Link href={href}>
+        <Link href={href}>
+            <div className={classes.root}>
                 <a className={classes.link}>
-                        <Icon className={classes.icon}/>
-                        <Typography component={'p'} variant={"caption"}>
-                            {label}
-                        </Typography>
+                    <Icon className={classes.icon}/>
+                    <Typography component={'p'} variant={"caption"}>
+                        {label}
+                    </Typography>
                 </a>
-            </Link>
+            </div>
+
+        </Link>
     );
 };
 

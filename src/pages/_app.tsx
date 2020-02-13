@@ -26,13 +26,12 @@ class MyApp extends App {
 
     render() {
         const {props} = this as any;
-        const {Component, pageProps, store} = props;
-
+        const {Component, pageProps, store, router: {route}} = props;
         return (<>
             <Provider store={store}>
                 <AppThemeProvider>
                     <CssBaseline/>
-                    <Layout>
+                    <Layout route={route}>
                         <Component {...pageProps} />
                     </Layout>
                 </AppThemeProvider>

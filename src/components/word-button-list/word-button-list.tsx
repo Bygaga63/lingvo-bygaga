@@ -10,7 +10,7 @@ import {Status} from "common/types";
 
 type Props = {
     status: Status;
-    classNames?: string;
+    className?: string;
 }
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,13 +24,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const WordButtonList: FC<Props> = ({status, classNames = ''}) => {
+const WordButtonList: FC<Props> = ({status, className = ''}) => {
     const classes = useStyles();
     const onClickTyping = () => console.log('Typing');
     const onClickPeep = () => console.log('Peep');
     const onClickChoose = () => console.log('Choose');
     return (
-        <div className={`${classes.root} ${classNames}`}>
+        <div className={`${classes.root} ${className}`}>
 
             {(status === Status.new) ?
                     <WordButton onClick={onClickPeep} Icon={RemoveRedEyeIcon}/>

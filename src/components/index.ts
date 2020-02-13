@@ -8,3 +8,4 @@ export {default as RememberChoiceButtonList} from './remember-choice-button-list
 export {default as CardContent} from './card-content/card-content';
 export {default as WordRepeatStatus} from './word-repeat-status/word-repeat-status';
 export {default as WordAndCategory} from 'components/word-and-category/word-and-category';
+export {default as WordActions} from 'components/word-actions/word-actions';

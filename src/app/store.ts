@@ -1,24 +1,15 @@
-import { configureStore, Action } from '@reduxjs/toolkit'
+import { configureStore, Action, DeepPartial } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
 
 import rootReducer, { RootState } from './rootReducer'
 
-// const store = configureStore({
-//     reducer: rootReducer
-// });
-
-
-// export type AppDispatch = typeof store.dispatch
-
 export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
 
-// export default store
-
-export default function makeStore(preloadedState: any) {
-
-    return configureStore({
+export default function makeStore(preloadedState: DeepPartial<RootState>) {
+    return configureStore<RootState>({
         reducer: rootReducer,
         devTools: process.env.NODE_ENV !== 'production',
+        //redux wrapper закидывает  сюда preloaded state
         preloadedState
     });
 }

@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {WordAndCategory, WordButtonList, WordRepeatStatus} from "components";
+import {WordActions, WordAndCategory, WordButtonList, WordRepeatStatus} from "components";
 import {Word} from "common/types";
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 type Props = {
     word: Word;
@@ -15,21 +14,16 @@ const useStyles = makeStyles(theme => ({
         '&::-webkit-scrollbar': {
             display: 'none',
         },
-        position: 'relative',
+        display: 'grid',
+        gridTemplateRows: '1fr 6fr 9fr',
+        // position: 'relative',
     },
-    header: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        padding: '0 0.7rem',
-    },
-
     buttons: {
-        position: 'absolute',
-        top: '35vh',
-        width: '100%',
         textAlign: 'center',
+    },
+    wordAndCategory: {
+        padding: '3vh 10vw 0 10vw',
     }
-
 }));
 
 
@@ -39,15 +33,9 @@ const CardContent: FC<Props> = ({word}) => {
 
     return (
         <div className={classes.root}>
-            <div className={classes.header}>
-                <WordRepeatStatus status={word.status}/>
-                <MoreHorizIcon />
-            </div>
-
-            <WordAndCategory word={word}/>
-
-
-            <WordButtonList classNames={classes.buttons} status={word.status}/>
+            <WordActions word={word}/>
+            <WordAndCategory className={classes.wordAndCategory} word={word}/>
+            <WordButtonList className={classes.buttons} status={word.status}/>
         </div>
     );
 };

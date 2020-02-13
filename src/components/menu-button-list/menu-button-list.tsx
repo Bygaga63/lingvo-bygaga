@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import MenuButton from "./menu-button";
 import SchoolIcon from '@material-ui/icons/School';
@@ -7,25 +7,30 @@ import TimelineIcon from '@material-ui/icons/Timeline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import {Routes} from "app/routes";
 import Grid from '@material-ui/core/Grid';
+import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
-type Props = {}
-const useStyles = makeStyles(theme => ({
+type Props = {
+    route: Routes;
+}
+const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '0 1vw',
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        backgroundColor: (props: Props) => {
+            return (props.route === Routes.menu) ? theme.palette.background.paper : theme.palette.background.default
+        } ,
     },
 }));
 
-const MenuButtonList = ({}: Props) => {
-    const classes = useStyles();
+const MenuButtonList: FC<Props> = (props) => {
+    const classes = useStyles(props);
     return (
         <div className={classes.root}>
-            <Grid container justify={"space-between"} wrap={"nowrap"}>
-                <Grid item ><MenuButton href={Routes.learn} label={'Учить'} Icon={SchoolIcon}/></Grid>
-                <Grid item ><MenuButton href={Routes.category} label={'Категории'}
-                                                     Icon={FormatListBulletedIcon}/></Grid>
-                <Grid item ><MenuButton href={Routes.statistic} label={'Статистика'} Icon={TimelineIcon}/></Grid>
-                <Grid item ><MenuButton href={Routes.menu} label={'Меню'} Icon={SettingsIcon}/></Grid>
-            </Grid>
+            <MenuButton href={Routes.learn} label={'Учить'} Icon={SchoolIcon}/>
+            <MenuButton href={Routes.category} label={'Категории'} Icon={FormatListBulletedIcon}/>
+            <MenuButton href={Routes.statistic} label={'Статистика'} Icon={TimelineIcon}/>
+            <MenuButton href={Routes.menu} label={'Меню'} Icon={SettingsIcon}/>
         </div>
     );
 };

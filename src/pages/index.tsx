@@ -1,35 +1,51 @@
 import React from 'react';
 import {NextPage} from 'next';
+import {CardContent, RememberChoiceButtonList, WordCard} from 'components';
 import {makeStyles} from '@material-ui/core/styles';
-import { WordCard, MenuButtonList } from 'components';
+import Card from '@material-ui/core/Card';
+import {Category, Status, Word} from "common/types";
+
+const TEMP_WORD = {
+    id: 1,
+    status: Status.fifthRepeat,
+    text: 'leaver leaver leaver leaver leaver',
+    transcription: "['leda]",
+    category: Category.t3000,
+    audio: '',
+};
 
 const useStyles = makeStyles(theme => ({
     root: {
+        height: '100%',
+        padding: '1vh 0',
         display: 'flex',
-        padding: '2vh 0 1vh 0',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100vh'
     },
-    card: {
-        height: '88vh',
+    rememberChoice: {
+        position: 'relative',
+        left: 0,
     },
 }));
 
-const Home: NextPage<{ userAgent: string }> = ({userAgent}) => {
+type Props = {
+    userAgent: string;
+    word: Word;
+}
+
+const SearchPage: NextPage<Props> = ({userAgent, word}) => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <WordCard/>
-            <MenuButtonList/>
-        </div>
-    )
+        <Card className={classes.root}>
+            <CardContent word={word}/>
+            <RememberChoiceButtonList status={TEMP_WORD.status} classNames={classes.rememberChoice}/>
+        </Card>
+    );
 };
 
 
-Home.getInitialProps = async ({req}) => {
+SearchPage.getInitialProps = async ({req}) => {
     const userAgent = req ? req.headers['user-agent'] || '' : navigator.userAgent;
-    return {userAgent};
+    return {userAgent, word: TEMP_WORD};
 };
 
-export default Home;
+export default SearchPage;
